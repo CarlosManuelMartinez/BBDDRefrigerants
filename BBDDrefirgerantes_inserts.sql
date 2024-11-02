@@ -35,16 +35,16 @@ INSERT INTO Categoria_profesional (categoria_profesional) VALUES
 
 -- CLIENTES
 INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
-    ('A12345678', 'Clínica Salud Vistahermosa', 'Calle Mayor 123, Madrid'),
-    ('B23456789', 'Cine Yelmo', 'Avenida de la Libertad 45, Barcelona'),
-    ('C34567890', 'Gimnasio AmaFit', 'Calle del Deporte 89, Valencia'),
-    ('D45678901', 'Fábrica de Plásticos Borden', 'Polígono Industrial Norte 12, Benidorm'),
-    ('E56789012', 'Clínica Dental Adeslas', 'Paseo de los Olmos 7, Bilbao'),
-    ('F67890123', 'Cine Panoramis', 'Calle Cineastas 56, Benidorm'),
-    ('G78901234', 'Gimnasio FitnessPark', 'Avenida de la Salud 23, Zaragoza'),
-    ('H89012345', 'Fábrica Actiu', 'Polígono Sur 88, Castalla'),
-    ('I90123456', 'Clínica de Fisioterapia Fisios', 'Calle del Río 34, San Vicente Del Raspeig'),
-    ('J01234567', 'Cine La Esperanza', 'Plaza del Cine 2, Agost');
+    ('A12345678', 'Grupo Kinepolis', 'Calle Gran Vía 50, Madrid'),
+    ('B23456789', 'Grupo Sanitas Clínicas', 'Avenida de la Salud 15, Barcelona'),
+    ('C34567890', 'Grupo Fitness Pro', 'Calle del Deporte 27, Valencia'),
+    ('D45678901', 'Grupo Inditex Textiles', 'Polígono Industrial Norte 12, La Coruña'),
+    ('E56789012', 'Clinimed Grupo Hospitalario', 'Paseo de la Esperanza 7, Bilbao'),
+    ('F67890123', 'CineWorld España', 'Calle de los Directores 56, Madrid'),
+    ('G78901234', 'Grupo GymTime', 'Avenida de la Fuerza 23, Zaragoza'),
+    ('H89012345', 'Fábricas Actiu Grupo Industrial', 'Polígono Sur 88, Castalla'),
+    ('I90123456', 'Grupo FisioSalud', 'Calle Río Ebro 34, Sevilla'),
+    ('J01234567', 'CineGlobal', 'Plaza de los Espectadores 10, Barcelona');
 
 --OPERARIOS
 INSERT INTO Operario (dni, nombre, apellido1, apellido2, id_categoria_profesional) VALUES
@@ -58,5 +58,53 @@ INSERT INTO Operario (dni, nombre, apellido1, apellido2, id_categoria_profesiona
     ('89012345H', 'Raquel', 'Romero', 'Cruz', 2),
     ('90123456I', 'David', 'Navarro', NULL, 3),
     ('01234567J', 'Sandra', 'Ortega', 'Marin', 1);
+
+--INSTALACIONES
+INSERT INTO Instalacion (id_cliente, nombre, direccion, horario) VALUES
+    (1, 'Kinepolis Madrid - La Moraleja', 'Calle Moraleja 120, Madrid', '10:00 - 23:00'),
+    (1, 'Kinepolis Valencia - Aqua', 'Avenida del Puerto 23, Valencia', '10:00 - 23:00'),
+    (2, 'Clínica Sanitas Diagonal', 'Calle Diagonal 50, Barcelona', '08:00 - 20:00'),
+    (2, 'Clínica Sanitas Central', 'Calle Salud 15, Madrid', '08:00 - 20:00'),
+    (3, 'Fitness Pro Sevilla', 'Calle Deporte 32, Sevilla', '06:00 - 22:00'),
+    (3, 'Fitness Pro Madrid', 'Avenida Atlética 10, Madrid', '06:00 - 22:00'),
+    (4, 'Inditex Fábrica Principal', 'Polígono Norte 5, La Coruña', '07:00 - 19:00'),
+    (5, 'Clinimed Bilbao', 'Calle Hospitalaria 12, Bilbao', '08:00 - 18:00'),
+    (6, 'CineWorld Madrid', 'Calle Cinema 42, Madrid', '10:00 - 01:00'),
+    (7, 'GymTime Zaragoza', 'Avenida Fitness 99, Zaragoza', '05:30 - 23:30'),
+    (1, 'Kinepolis Barcelona - Diagonal Mar', 'Avenida Diagonal Mar 45, Barcelona', '10:00 - 23:00'),
+    (1, 'Kinepolis Alicante - Plaza Mar', 'Avenida de la Estación 22, Alicante', '10:00 - 23:00'),
+    (2, 'Clínica Sanitas Valencia', 'Calle Salud 78, Valencia', '08:00 - 20:00'),
+    (2, 'Clínica Sanitas Sevilla', 'Avenida de Andalucía 30, Sevilla', '08:00 - 20:00'),
+    (3, 'Fitness Pro Barcelona', 'Calle del Ejercicio 15, Barcelona', '06:00 - 22:00'),
+    (3, 'Fitness Pro Málaga', 'Avenida del Deporte 55, Málaga', '06:00 - 22:00'),
+    (4, 'Inditex Fábrica Este', 'Polígono Industrial Este 22, Zaragoza', '07:00 - 19:00'),
+    (4, 'Inditex Fábrica Sur', 'Polígono Industrial Sur 9, Sevilla', '07:00 - 19:00'),
+    (5, 'Clinimed Madrid', 'Paseo de la Castellana 150, Madrid', '08:00 - 18:00'),
+    (6, 'CineWorld Barcelona', 'Calle de la Filmoteca 3, Barcelona', '10:00 - 01:00');
+
+    --EQUIPOS
+    INSERT INTO Equipo (id_instalacion, id_refrigerante, id_tipo_equipo, marca, modelo, carga_refrigerante) VALUES
+    (1, 1, 1, 'Daikin', 'FTXM35M', 1.200),
+    (2, 2, 2, 'Mitsubishi Electric', 'MSZ-HR50VF', 5.500),
+    (3, 3, 3, 'LG', 'S3-Q12JA3BA', 1.100),
+    (4, 4, 4, 'Samsung', 'AR12TXHQASINEU', 5.800),
+    (5, 5, 1, 'Panasonic', 'CS-Z25VKEW', 1.300),
+    (6, 6, 2, 'Fujitsu', 'ASY35UI-LT', 6.200),
+    (7, 7, 3, 'Hisense', 'CA35YR01G', 1.200),
+    (8, 8, 4, 'Daikin', 'ATXN25M5V1B', 5.850),
+    (9, 9, 1, 'Mitsubishi Electric', 'MSZ-SF25VE3', 1.050),
+    (10, 10, 2, 'LG', 'S12EQ.NS3', 6.300),
+    (11, 11, 3, 'Samsung', 'AR09TXEAAWKNEU', 1.100),
+    (12, 12, 4, 'Panasonic', 'CS-TZ20WKEW', 5.900),
+    (13, 13, 1, 'Daikin', 'FTX20J3V1B', 1.400),
+    (14, 14, 2, 'Mitsubishi Electric', 'MSZ-AP50VGK', 6.500),
+    (15, 15, 3, 'Fujitsu', 'ASY35UI-KP', 1.350),
+    (16, 16, 4, 'Hisense', 'AUC-18HR4SX', 5.750),
+    (17, 17, 1, 'Samsung', 'AR12RXHPEWKN', 1.250),
+    (18, 18, 2, 'Panasonic', 'CS-XE12TKF', 6.450),
+    (19, 19, 3, 'LG', 'S09ET.NS3', 1.150),
+    (20, 20, 4, 'Daikin', 'FTXM25N', 5.600);
+
+
 
 

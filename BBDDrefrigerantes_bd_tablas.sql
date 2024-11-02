@@ -78,7 +78,6 @@ CREATE TABLE Operario (
     apellido1 NVARCHAR(100) NOT NULL,
     apellido2 NVARCHAR(100)
     id_categoria_profesional INT NOT NULL,
-    
 
     CONSTRAINT UQ_Operario_DNI UNIQUE (dni),
 
@@ -112,7 +111,6 @@ CREATE TABLE Equipo (
     modelo NVARCHAR(200) NOT NULL,
     carga_refrigerante_grs INT NOT NULL, 
     
-    -- Claves ajenas
     CONSTRAINT FK_Equipo_Instalacion FOREIGN KEY (id_instalacion)
         REFERENCES Instalacion(id)
         ON DELETE CASCADE,
