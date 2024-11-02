@@ -49,6 +49,18 @@ CREATE TABLE Cliente (
     direccion_facturacion NVARCHAR(200) NOT NULL
 );
 
+-- Crear la tabla Operario
+CREATE TABLE Operario (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    dni NVARCHAR(15) NOT NULL,
+    nombre NVARCHAR(100) NOT NULL,
+    Apellido1 NVARCHAR(100) NOT NULL,
+    Apellido2 NVARCHAR(100),
+    Categoria_profesional NVARCHAR(200) NOT NULL
+
+    CONSTRAINT UQ_Operario_DNI UNIQUE (dni)
+);
+
 -- Crear la tabla Instalacion
 CREATE TABLE Instalacion (
     id_instalacion INT IDENTITY(1,1) PRIMARY KEY,
