@@ -1,4 +1,6 @@
--- Carlos Manuel Martinez Pomares
+-- Script bbdd gestor de refrigerantes
+-- Carlos Manuel Martinez Pomares 
+-- DAM Semipresencial Proyecto final
 -- BBDD REFRIGERANTES
 
 USE master;
@@ -28,11 +30,11 @@ LOG ON
     FILEGROWTH = 5 MB);
 GO
 
--- Usar la nueva base de datos
+
 USE Refrigerantes;
 GO
 ----------------------------------------------CREACION DE LAS TABLAS------------------------------------------
--- Crear la tabla Refrigerantes
+-- TABLA REFRIGERANTES
 CREATE TABLE Refrigerantes (
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre NVARCHAR(50) NOT NULL,
@@ -48,6 +50,8 @@ CREATE TABLE Tipo_equipo (
    
 );
 
+
+
 -- Crear la tabla Cliente
 CREATE TABLE Cliente (
     id INT IDENTITY(1,1) PRIMARY KEY,
@@ -56,11 +60,19 @@ CREATE TABLE Cliente (
     direccion_facturacion NVARCHAR(200) NOT NULL
 );
 
+-- TABLA CATEGORIA OPERARIO
 
+CREATE TABLE CategoriaOperario (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    Categoria_operario NVARCHAR(15) NOT NULL
+   
+);
 
--- Crear la tabla Operario
+-- TABLA OPERARIO
+
 CREATE TABLE Operario (
     id INT IDENTITY(1,1) PRIMARY KEY,
+    id categoria_operario INT NOT NULL,
     dni NVARCHAR(15) NOT NULL,
     nombre NVARCHAR(100) NOT NULL,
     Apellido1 NVARCHAR(100) NOT NULL,
@@ -70,7 +82,8 @@ CREATE TABLE Operario (
     CONSTRAINT UQ_Operario_DNI UNIQUE (dni)
 );
 
--- Crear la tabla Equipo
+-- TABLA EQUIPO
+
 CREATE TABLE Equipo (
     id INT IDENTITY(1,1) PRIMARY KEY,
     id_instalacion INT NOT NULL,
@@ -78,9 +91,9 @@ CREATE TABLE Equipo (
     id_tipo_equipo INT NOT NULL,
     marca NVARCHAR(100) NOT NULL,
     modelo NVARCHAR(200) NOT NULL,
-    carga_refrigerante DECIMAL(10,3) NOT NULL, -- Ajustar a (10,3) para manejar valores más grandes
+    carga_refrigerante_grs INT NOT NULL, 
     
-    -- Claves externas
+    -- Claves ajenas
     CONSTRAINT FK_Equipo_Instalacion FOREIGN KEY (id_instalacion)
         REFERENCES Instalacion(id)
         ON DELETE CASCADE,
@@ -95,9 +108,10 @@ CREATE TABLE Equipo (
 );
 
 
--- Crear la tabla Instalacion
+-- TABLA INSTALACION
+
 CREATE TABLE Instalacion (
-    id_instalacion INT IDENTITY(1,1) PRIMARY KEY,
+    id INT IDENTITY(1,1) PRIMARY KEY,
     id_cliente INT NOT NULL,
     nombre NVARCHAR(100) NOT NULL,
     direccion NVARCHAR(200) NOT NULL,
@@ -109,47 +123,23 @@ CREATE TABLE Instalacion (
 );
 
 
+-- TABLA OPERACION DE CARGA
+
+CREATE TABLE OperacionDeCarga (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    id_operario INT NOT NULL,
+    id_equipo INT NOT NULL,
+    decripcion NVARCHAR(500) NOT NULL,
+    refrigerante_manipulado
+    recuperacion BIT NOT NULL
+    
+    CONSTRAINT FK_OperacionDeCarga_Operario FOREIGN KEY (id_operario)
+        REFERENCES Operario(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT FK_OperacionDeCarga_Equipo FOREIGN KEY (id_equipo)
+        REFERENCES Equipo(id)
+        ON DELETE CASCADE    
+);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-----------------------------------------------CREACION DE LOS INSERTS------------------------------------------
-
--- Inserts
--- GASES
-INSERT INTO Refrigerantes (nombre, CO2eq, clase, grupo)
-VALUES 
-    ('R22', 1810.00, 'HCFC', 'A1'),
-    ('R134a', 1430.00, 'HFC', 'A1'),
-    ('R410A', 2088.00, 'HFC', 'A1'),
-    ('R32', 675.00, 'HFC', 'A2L'),
-    ('R404A', 3922.00, 'HFC', 'A1'),
-    ('R407C', 1774.00, 'HFC', 'A1'),
-    ('R1234yf', 4.00, 'HFO', 'A2L'),
-    ('R290', 3.00, 'HC', 'A3'),
-    ('R600a', 3.00, 'HC', 'A3'),
-    ('R744', 1.00, 'CO2', 'A1'); -- R744 es CO2
-	
--- CLIENTES
-INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
-    ('A12345678', 'Clínica Salud Vistahermosa', 'Calle Mayor 123, Madrid'),
-    ('B23456789', 'Cine Yelmo', 'Avenida de la Libertad 45, Barcelona'),
-    ('C34567890', 'Gimnasio AmaFit', 'Calle del Deporte 89, Valencia'),
-    ('D45678901', 'Fábrica de Plásticos Borden', 'Polígono Industrial Norte 12, Benidorm'),
-    ('E56789012', 'Clínica Dental Adeslas', 'Paseo de los Olmos 7, Bilbao'),
-    ('F67890123', 'Cine Panoramis', 'Calle Cineastas 56, Benidorm'),
-    ('G78901234', 'Gimnasio FitnessPark', 'Avenida de la Salud 23, Zaragoza'),
-    ('H89012345', 'Fábrica Actiu', 'Polígono Sur 88, Castalla'),
-    ('I90123456', 'Clínica de Fisioterapia Fisios', 'Calle del Río 34, San Vicente Del Raspeig'),
-    ('J01234567', 'Cine La Esperanza', 'Plaza del Cine 2, Agost');
