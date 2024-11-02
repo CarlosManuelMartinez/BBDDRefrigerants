@@ -105,6 +105,18 @@ INSERT INTO Instalacion (id_cliente, nombre, direccion, horario) VALUES
     (19, 19, 3, 'LG', 'S09ET.NS3', 1.150),
     (20, 20, 4, 'Daikin', 'FTXM25N', 5.600);
 
+--OPERACIONES DE CARGA
+INSERT INTO Operacion_carga (id_operario, id_equipo, fecha_operacion, descripcion, refrigerante_manipulado, recuperacion) VALUES
+    (2, 6, '2023-11-01', 'Inspección de rutina, ajuste de carga.', 0.750, 0),
+    (3, 9, '2023-11-03', 'Extracción de refrigerante por fuga.', 2.100, 1),
+    (4, 4, '2023-11-05', 'Carga inicial de refrigerante para equipo nuevo.', 3.000, 0),
+    (5, 2, '2023-11-07', 'Ajuste de carga de refrigerante en sistema.', 0.500, 0),
+    (6, 7, '2023-11-09', 'Extracción de refrigerante en revisión de emergencia.', 0.800, 1),
+    (7, 1, '2023-11-11', 'Carga parcial de refrigerante tras revisión.', 1.050, 0),
+    (8, 5, '2023-11-13', 'Extracción de refrigerante por equipo dado de baja.', 4.200, 1),
+    (9, 10, '2023-11-14', 'Mantenimiento y carga de refrigerante en sistema de enfriamiento.', 1.500, 0),
+    (10, 8, '2023-11-15', 'Extracción de refrigerante tras reparación del compresor.', 2.300, 1);
+
 
 
 

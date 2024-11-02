@@ -130,6 +130,7 @@ CREATE TABLE Operacion_carga (
     id INT IDENTITY(1,1) PRIMARY KEY,
     id_operario INT NOT NULL,
     id_equipo INT NOT NULL,
+    fecha_operacion DATETIME2 NOT NULL,,
     decripcion NVARCHAR(500) NOT NULL,
     refrigerante_manipulado DECIMAL(3,3) NOT NULL,
     recuperacion BIT NOT NULL
