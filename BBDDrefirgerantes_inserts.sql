@@ -20,6 +20,19 @@ VALUES
     ('R600a', 3.00, 'HC', 'A3'),
     ('R744', 1.00, 'CO2', 'A1'); -- R744 es CO2
 	
+--TIPO EQUIPO
+INSERT INTO Tipo_equipo (tipo_equipo) VALUES
+    ('PARTIDA DOMESTICO'),
+    ('PARTIDA INDUSTRIAL'),
+    ('COMPACTA DOMESTICO'),
+    ('COMPACTA INDUSTRIAL');
+
+--CATEGORIA PROFESIONAL
+INSERT INTO Categoria_profesional (categoria_profesional) VALUES
+    ('OFICIAL_PRIMERA'),
+    ('OFICIAL_SEGUNDA'),
+    ('OFICIAL_TERCERA');
+
 -- CLIENTES
 INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
     ('A12345678', 'Clínica Salud Vistahermosa', 'Calle Mayor 123, Madrid'),
@@ -32,3 +45,18 @@ INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
     ('H89012345', 'Fábrica Actiu', 'Polígono Sur 88, Castalla'),
     ('I90123456', 'Clínica de Fisioterapia Fisios', 'Calle del Río 34, San Vicente Del Raspeig'),
     ('J01234567', 'Cine La Esperanza', 'Plaza del Cine 2, Agost');
+
+--OPERARIOS
+INSERT INTO Operario (dni, nombre, apellido1, apellido2, id_categoria_profesional) VALUES
+    ('12345678A', 'Carlos', 'Martinez', 'Lopez', 1),
+    ('23456789B', 'Ana', 'Gomez', 'Garcia', 2),
+    ('34567890C', 'Luis', 'Hernandez', 'Sanchez', 3),
+    ('45678901D', 'Maria', 'Diaz', NULL, 1),
+    ('56789012E', 'Jose', 'Perez', 'Martinez', 2),
+    ('67890123F', 'Laura', 'Moreno', 'Lopez', 3),
+    ('78901234G', 'Javier', 'Santos', 'Jimenez', 1),
+    ('89012345H', 'Raquel', 'Romero', 'Cruz', 2),
+    ('90123456I', 'David', 'Navarro', NULL, 3),
+    ('01234567J', 'Sandra', 'Ortega', 'Marin', 1);
+
+

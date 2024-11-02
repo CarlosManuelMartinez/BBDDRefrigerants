@@ -48,7 +48,7 @@ CREATE TABLE Refrigerantes (
 
 CREATE TABLE Tipo_equipo (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    tipo_eqipo NVARCHAR(15) NOT NULL
+    tipo_equipo NVARCHAR(50) NOT NULL
    
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE Tipo_equipo (
 
 CREATE TABLE Categoria_profesional (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    Categoria_operario NVARCHAR(15) NOT NULL
+    categoria_profesional NVARCHAR(50) NOT NULL
    
 );
 
@@ -73,12 +73,12 @@ CREATE TABLE Cliente (
 
 CREATE TABLE Operario (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    id categoria_operario INT NOT NULL,
     dni NVARCHAR(15) NOT NULL,
     nombre NVARCHAR(100) NOT NULL,
     apellido1 NVARCHAR(100) NOT NULL,
-    apellido2 NVARCHAR(100),
-    id_categoria_profesional INT NOT NULL
+    apellido2 NVARCHAR(100)
+    id_categoria_profesional INT NOT NULL,
+    
 
     CONSTRAINT UQ_Operario_DNI UNIQUE (dni),
 
@@ -133,7 +133,7 @@ CREATE TABLE Operacion_carga (
     id_operario INT NOT NULL,
     id_equipo INT NOT NULL,
     decripcion NVARCHAR(500) NOT NULL,
-    refrigerante_manipulado
+    refrigerante_manipulado DECIMAL(3,3) NOT NULL,
     recuperacion BIT NOT NULL
     
     CONSTRAINT FK_Operacion_carga_Operario FOREIGN KEY (id_operario)
@@ -146,4 +146,3 @@ CREATE TABLE Operacion_carga (
 );
 
 
---HOLA
