@@ -31,7 +31,7 @@ GO
 -- Usar la nueva base de datos
 USE Refrigerantes;
 GO
-
+----------------------------------------------CREACION DE LAS TABLAS------------------------------------------
 -- Crear la tabla Refrigerantes
 CREATE TABLE Refrigerantes (
     id INT IDENTITY(1,1) PRIMARY KEY,
@@ -41,6 +41,13 @@ CREATE TABLE Refrigerantes (
     grupo NVARCHAR(50) NOT NULL
 );
 
+-- Crear la tabla Tipo_Equipo
+CREATE TABLE Tipo_equipo (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    tipo_eqipo NVARCHAR(15) NOT NULL
+   
+);
+
 -- Crear la tabla Cliente
 CREATE TABLE Cliente (
     id INT IDENTITY(1,1) PRIMARY KEY,
@@ -48,6 +55,8 @@ CREATE TABLE Cliente (
     nombre NVARCHAR(100) NOT NULL,
     direccion_facturacion NVARCHAR(200) NOT NULL
 );
+
+
 
 -- Crear la tabla Operario
 CREATE TABLE Operario (
@@ -61,6 +70,31 @@ CREATE TABLE Operario (
     CONSTRAINT UQ_Operario_DNI UNIQUE (dni)
 );
 
+-- Crear la tabla Equipo
+CREATE TABLE Equipo (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    id_instalacion INT NOT NULL,
+    id_refrigerante INT NOT NULL,  
+    id_tipo_equipo INT NOT NULL,
+    marca NVARCHAR(100) NOT NULL,
+    modelo NVARCHAR(200) NOT NULL,
+    carga_refrigerante DECIMAL(10,3) NOT NULL, -- Ajustar a (10,3) para manejar valores más grandes
+    
+    -- Claves externas
+    CONSTRAINT FK_Equipo_Instalacion FOREIGN KEY (id_instalacion)
+        REFERENCES Instalacion(id)
+        ON DELETE CASCADE,
+    
+    CONSTRAINT FK_Equipo_Refrigerante FOREIGN KEY (id_refrigerante)
+        REFERENCES Refrigerantes(id)
+        ON DELETE CASCADE,  
+    
+    CONSTRAINT FK_Equipo_Tipo_equipo FOREIGN KEY (id_tipo_equipo)
+        REFERENCES Tipo_equipo(id)
+        ON DELETE CASCADE
+);
+
+
 -- Crear la tabla Instalacion
 CREATE TABLE Instalacion (
     id_instalacion INT IDENTITY(1,1) PRIMARY KEY,
@@ -73,6 +107,24 @@ CREATE TABLE Instalacion (
         REFERENCES Cliente(id)
         ON DELETE CASCADE
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------CREACION DE LOS INSERTS------------------------------------------
 
 -- Inserts
 -- GASES
