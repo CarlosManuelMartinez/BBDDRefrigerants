@@ -6,14 +6,13 @@
 USE master;
 GO
 
--- Eliminar la base de datos si existe
+
 IF EXISTS(SELECT * FROM sys.databases WHERE name = 'Refrigerantes')
 BEGIN
     DROP DATABASE Refrigerantes;
 END
 GO
 
--- Crear la base de datos
 CREATE DATABASE Refrigerantes ON
 (NAME = Refrigerantes_dat,
     FILENAME = 'C:\Users\carlo\AppData\Local\Microsoft\Microsoft 
@@ -43,7 +42,8 @@ CREATE TABLE Refrigerantes (
     grupo NVARCHAR(50) NOT NULL
 );
 
--- Crear la tabla Tipo_Equipo
+-- TABLA TIPO EQUIPO
+
 CREATE TABLE Tipo_equipo (
     id INT IDENTITY(1,1) PRIMARY KEY,
     tipo_eqipo NVARCHAR(15) NOT NULL
@@ -52,7 +52,8 @@ CREATE TABLE Tipo_equipo (
 
 
 
--- Crear la tabla Cliente
+--TABLA CLIENTE
+
 CREATE TABLE Cliente (
     id INT IDENTITY(1,1) PRIMARY KEY,
     cif NVARCHAR(15) NOT NULL,

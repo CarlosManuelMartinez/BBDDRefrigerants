@@ -1,3 +1,8 @@
+-- Script bbdd gestor de refrigerantes inserts
+-- Carlos Manuel Martinez Pomares 
+-- DAM Semipresencial Proyecto final
+-- BBDD REFRIGERANTES
+
 ----------------------------------------------CREACION DE LOS INSERTS------------------------------------------
 
 -- Inserts
