@@ -1,4 +1,4 @@
--- Script bbdd gestor de refrigerantes
+-- Script bbdd gestor de refrigerantes creacion base y tablas.
 -- Carlos Manuel Martinez Pomares 
 -- DAM Semipresencial Proyecto final
 -- BBDD REFRIGERANTES
