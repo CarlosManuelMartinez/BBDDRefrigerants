@@ -7,7 +7,7 @@
 
 -- Inserts
 -- GASES
-INSERT INTO Refrigerantes (nombre, CO2eq, clase, grupo)
+INSERT INTO Refrigerante (nombre, CO2eq, clase, grupo)
 VALUES 
     ('R22', 1810.00, 'HCFC', 'A1'),
     ('R134a', 1430.00, 'HFC', 'A1'),
@@ -31,7 +31,9 @@ INSERT INTO Tipo_equipo (tipo_equipo) VALUES
 INSERT INTO Categoria_profesional (categoria_profesional) VALUES
     ('OFICIAL_PRIMERA'),
     ('OFICIAL_SEGUNDA'),
-    ('OFICIAL_TERCERA');
+    ('OFICIAL_TERCERA'),
+    ('TECNICO'),
+    ('INGENIERO');
 
 -- CLIENTES
 INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
@@ -47,17 +49,20 @@ INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
     ('J01234567', 'CineGlobal', 'Plaza de los Espectadores 10, Barcelona');
 
 --OPERARIOS
-INSERT INTO Operario (dni, nombre, apellido1, apellido2, id_categoria_profesional) VALUES
-    ('12345678A', 'Carlos', 'Martinez', 'Lopez', 1),
-    ('23456789B', 'Ana', 'Gomez', 'Garcia', 2),
-    ('34567890C', 'Luis', 'Hernandez', 'Sanchez', 3),
-    ('45678901D', 'Maria', 'Diaz', NULL, 1),
-    ('56789012E', 'Jose', 'Perez', 'Martinez', 2),
-    ('67890123F', 'Laura', 'Moreno', 'Lopez', 3),
-    ('78901234G', 'Javier', 'Santos', 'Jimenez', 1),
-    ('89012345H', 'Raquel', 'Romero', 'Cruz', 2),
-    ('90123456I', 'David', 'Navarro', NULL, 3),
-    ('01234567J', 'Sandra', 'Ortega', 'Marin', 1);
+INSERT INTO Operario (dni, nombre, apellido1, apellido2, email, password, id_categoria_profesional) VALUES
+    ('12345678A', 'Carlos', 'Martinez', 'Lopez', 'carlos.martinez@refrigerante.com', '1234', 1),
+    ('23456789B', 'Ana', 'Gomez', 'Garcia', 'ana.gomez@refrigerante.com', '1234', 2),
+    ('34567890C', 'Luis', 'Hernandez', 'Sanchez', 'luis.hernandez@refrigerante.com', '1234', 3),
+    ('45678901D', 'Maria', 'Diaz', NULL, 'maria.diaz@refrigerante.com', '1234', 1),
+    ('56789012E', 'Jose', 'Perez', 'Martinez', 'jose.perez@refrigerante.com', '1234', 2),
+    ('67890123F', 'Laura', 'Moreno', 'Lopez', 'laura.moreno@refrigerante.com', '1234', 3),
+    ('78901234G', 'Javier', 'Santos', 'Jimenez', 'javier.santos@refrigerante.com', '1234', 1),
+    ('89012345H', 'Raquel', 'Romero', 'Cruz', 'raquel.romero@refrigerante.com', '1234', 2),
+    ('90123456I', 'David', 'Navarro', NULL, 'david.navarro@refrigerante.com', '1234', 3),
+    ('90123456H', 'Julian', 'Lopez', 'Navarro', 'julian.lopez@refrigerante.com', '1234', 4),
+    ('52764295H', 'Elver', 'Galarga', 'Astur', 'elver.galarga@refrigerante.com', '1234', 5),
+    ('01234567J', 'Sandra', 'Ortega', 'Marin', 'sandra.ortega@refrigerante.com', '1234', 1);
+
 
 --INSTALACIONES
 INSERT INTO Instalacion (id_cliente, nombre, direccion, horario) VALUES
@@ -82,8 +87,8 @@ INSERT INTO Instalacion (id_cliente, nombre, direccion, horario) VALUES
     (5, 'Clinimed Madrid', 'Paseo de la Castellana 150, Madrid', '08:00 - 18:00'),
     (6, 'CineWorld Barcelona', 'Calle de la Filmoteca 3, Barcelona', '10:00 - 01:00');
 
-    --EQUIPOS
-    INSERT INTO Equipo (id_instalacion, id_refrigerante, id_tipo_equipo, marca, modelo, carga_refrigerante) VALUES
+-- EQUIPOS
+INSERT INTO Equipo (id_instalacion, id_refrigerante, id_tipo_equipo, marca, modelo, carga_refrigerante) VALUES
     (1, 1, 1, 'Daikin', 'FTXM35M', 1.200),
     (2, 2, 2, 'Mitsubishi Electric', 'MSZ-HR50VF', 5.500),
     (3, 3, 3, 'LG', 'S3-Q12JA3BA', 1.100),
@@ -94,16 +99,16 @@ INSERT INTO Instalacion (id_cliente, nombre, direccion, horario) VALUES
     (8, 8, 4, 'Daikin', 'ATXN25M5V1B', 5.850),
     (9, 9, 1, 'Mitsubishi Electric', 'MSZ-SF25VE3', 1.050),
     (10, 10, 2, 'LG', 'S12EQ.NS3', 6.300),
-    (11, 11, 3, 'Samsung', 'AR09TXEAAWKNEU', 1.100),
-    (12, 12, 4, 'Panasonic', 'CS-TZ20WKEW', 5.900),
-    (13, 13, 1, 'Daikin', 'FTX20J3V1B', 1.400),
-    (14, 14, 2, 'Mitsubishi Electric', 'MSZ-AP50VGK', 6.500),
-    (15, 15, 3, 'Fujitsu', 'ASY35UI-KP', 1.350),
-    (16, 16, 4, 'Hisense', 'AUC-18HR4SX', 5.750),
-    (17, 17, 1, 'Samsung', 'AR12RXHPEWKN', 1.250),
-    (18, 18, 2, 'Panasonic', 'CS-XE12TKF', 6.450),
-    (19, 19, 3, 'LG', 'S09ET.NS3', 1.150),
-    (20, 20, 4, 'Daikin', 'FTXM25N', 5.600);
+    (1, 1, 3, 'Samsung', 'AR09TXEAAWKNEU', 1.100),
+    (2, 2, 4, 'Panasonic', 'CS-TZ20WKEW', 5.900),
+    (3, 3, 1, 'Daikin', 'FTX20J3V1B', 1.400),
+    (4, 4, 2, 'Mitsubishi Electric', 'MSZ-AP50VGK', 6.500),
+    (5, 5, 3, 'Fujitsu', 'ASY35UI-KP', 1.350),
+    (6, 6, 4, 'Hisense', 'AUC-18HR4SX', 5.750),
+    (7, 7, 1, 'Samsung', 'AR12RXHPEWKN', 1.250),
+    (8, 8, 2, 'Panasonic', 'CS-XE12TKF', 6.450),
+    (9, 9, 3, 'LG', 'S09ET.NS3', 1.150),
+    (10, 10, 4, 'Daikin', 'FTXM25N', 5.600);
 
 --OPERACIONES DE CARGA
 INSERT INTO Operacion_carga (id_operario, id_equipo, fecha_operacion, descripcion, refrigerante_manipulado, recuperacion) VALUES

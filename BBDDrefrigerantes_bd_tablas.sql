@@ -15,15 +15,13 @@ GO
 
 CREATE DATABASE Refrigerantes ON
 (NAME = Refrigerantes_dat,
-    FILENAME = 'C:\Users\carlo\AppData\Local\Microsoft\Microsoft 
-    SQL Server Local DB\Instances\MSSQLLocalDB\refrigerantes.mdf',
+    FILENAME = 'C:\Users\carlo\RefrigerantesDB\refrigerantes.mdf',
     SIZE = 10,
     MAXSIZE = 50,
     FILEGROWTH = 5)
 LOG ON
 (NAME = Refrigerantes_log,
-    FILENAME = 'C:\Users\carlo\AppData\Local\Microsoft\Microsoft 
-    SQL Server Local DB\Instances\MSSQLLocalDB\refrigerantes.ldf',
+    FILENAME = 'C:\Users\carlo\RefrigerantesDB\refrigerantes_log.ldf',
     SIZE = 5 MB,
     MAXSIZE = 25 MB,
     FILEGROWTH = 5 MB);
@@ -36,7 +34,7 @@ GO
 
 -- TABLA REFRIGERANTES
 
-CREATE TABLE Refrigerantes (
+CREATE TABLE Refrigerante (
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre NVARCHAR(50) NOT NULL,
     CO2eq DECIMAL(10,2) NOT NULL,
@@ -76,14 +74,16 @@ CREATE TABLE Operario (
     dni NVARCHAR(15) NOT NULL,
     nombre NVARCHAR(100) NOT NULL,
     apellido1 NVARCHAR(100) NOT NULL,
-    apellido2 NVARCHAR(100)
+    apellido2 NVARCHAR(100),
+    email NVARCHAR(50) NOT NULL,
+    password NVARCHAR(50) NOT NULL,
     id_categoria_profesional INT NOT NULL,
 
     CONSTRAINT UQ_Operario_DNI UNIQUE (dni),
 
     CONSTRAINT FK_Operario_Categoria_profesional FOREIGN KEY (id_categoria_profesional)
-        REFERENCES Categoria_profesionals(id)
-        ON DELETE CASCADE,
+        REFERENCES Categoria_profesional(id)
+        ON DELETE CASCADE
 );
 
 -- TABLA INSTALACION
@@ -109,14 +109,14 @@ CREATE TABLE Equipo (
     id_tipo_equipo INT NOT NULL,
     marca NVARCHAR(100) NOT NULL,
     modelo NVARCHAR(200) NOT NULL,
-    carga_refrigerante_grs INT NOT NULL, 
+    carga_refrigerante DECIMAL(5,3) NOT NULL, 
     
     CONSTRAINT FK_Equipo_Instalacion FOREIGN KEY (id_instalacion)
         REFERENCES Instalacion(id)
         ON DELETE CASCADE,
     
     CONSTRAINT FK_Equipo_Refrigerante FOREIGN KEY (id_refrigerante)
-        REFERENCES Refrigerantes(id)
+        REFERENCES Refrigerante(id)
         ON DELETE CASCADE,  
     
     CONSTRAINT FK_Equipo_Tipo_equipo FOREIGN KEY (id_tipo_equipo)
@@ -130,9 +130,9 @@ CREATE TABLE Operacion_carga (
     id INT IDENTITY(1,1) PRIMARY KEY,
     id_operario INT NOT NULL,
     id_equipo INT NOT NULL,
-    fecha_operacion DATETIME2 NOT NULL,,
-    decripcion NVARCHAR(500) NOT NULL,
-    refrigerante_manipulado DECIMAL(3,3) NOT NULL,
+    fecha_operacion DATETIME2 NOT NULL,
+    descripcion NVARCHAR(500) NOT NULL,
+    refrigerante_manipulado DECIMAL(5,3) NOT NULL,
     recuperacion BIT NOT NULL
     
     CONSTRAINT FK_Operacion_carga_Operario FOREIGN KEY (id_operario)
