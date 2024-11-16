@@ -72,7 +72,7 @@ CREATE TABLE Operario (
     apellido1 NVARCHAR(100) NOT NULL,
     apellido2 NVARCHAR(100),
     email NVARCHAR(50) NOT NULL,
-    password NVARCHAR(50) NOT NULL,
+    password NVARCHAR(64) NOT NULL,
     categoria_profesional_id INT NOT NULL,
 
     CONSTRAINT UQ_Operario_DNI UNIQUE (dni),
