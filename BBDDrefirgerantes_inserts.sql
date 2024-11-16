@@ -50,18 +50,30 @@ INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
 
 --OPERARIOS
 INSERT INTO Operario (dni, nombre, apellido1, apellido2, email, password, categoria_profesional_id) VALUES
-    ('12345678A', 'Carlos', 'Martinez', 'Lopez', 'carlos.martinez@refrigerante.com', '1234', 1),
-    ('23456789B', 'Ana', 'Gomez', 'Garcia', 'ana.gomez@refrigerante.com', '1234', 2),
-    ('34567890C', 'Luis', 'Hernandez', 'Sanchez', 'luis.hernandez@refrigerante.com', '1234', 3),
-    ('45678901D', 'Maria', 'Diaz', NULL, 'maria.diaz@refrigerante.com', '1234', 1),
-    ('56789012E', 'Jose', 'Perez', 'Martinez', 'jose.perez@refrigerante.com', '1234', 2),
-    ('67890123F', 'Laura', 'Moreno', 'Lopez', 'laura.moreno@refrigerante.com', '1234', 3),
-    ('78901234G', 'Javier', 'Santos', 'Jimenez', 'javier.santos@refrigerante.com', '1234', 1),
-    ('89012345H', 'Raquel', 'Romero', 'Cruz', 'raquel.romero@refrigerante.com', '1234', 2),
-    ('90123456I', 'David', 'Navarro', NULL, 'david.navarro@refrigerante.com', '1234', 3),
-    ('90123456H', 'Julian', 'Lopez', 'Navarro', 'julian.lopez@refrigerante.com', '1234', 4),
-    ('52764295H', 'Elver', 'Galarga', 'Astur', 'elver.galarga@refrigerante.com', '1234', 5),
-    ('01234567J', 'Sandra', 'Ortega', 'Marin', 'sandra.ortega@refrigerante.com', '1234', 1);
+    ('12345678A', 'Carlos', 'Martinez', 'Lopez', 'carlos.martinez@refrigerante.com', 
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1),
+    ('23456789B', 'Ana', 'Gomez', 'Garcia', 'ana.gomez@refrigerante.com',
+     '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 2),
+    ('34567890C', 'Luis', 'Hernandez', 'Sanchez', 'luis.hernandez@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 3),
+    ('45678901D', 'Maria', 'Diaz', NULL, 'maria.diaz@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1),
+    ('56789012E', 'Jose', 'Perez', 'Martinez', 'jose.perez@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 2),
+    ('67890123F', 'Laura', 'Moreno', 'Lopez', 'laura.moreno@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 3),
+    ('78901234G', 'Javier', 'Santos', 'Jimenez', 'javier.santos@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1),
+    ('89012345H', 'Raquel', 'Romero', 'Cruz', 'raquel.romero@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 2),
+    ('90123456I', 'David', 'Navarro', NULL, 'david.navarro@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 3),
+    ('90123456H', 'Julian', 'Lopez', 'Navarro', 'julian.lopez@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 4),
+    ('52764295H', 'Elver', 'Galarga', 'Astur', 'elver.galarga@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 5),
+    ('01234567J', 'Sandra', 'Ortega', 'Marin', 'sandra.ortega@refrigerante.com',
+    '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1);
 
 --INSTALACIONES
 INSERT INTO Instalacion (cliente_id, nombre, direccion, horario) VALUES
