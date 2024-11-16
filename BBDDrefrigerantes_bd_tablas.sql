@@ -6,7 +6,6 @@
 USE master;
 GO
 
-
 IF EXISTS(SELECT * FROM sys.databases WHERE name = 'Refrigerantes')
 BEGIN
     DROP DATABASE Refrigerantes;
@@ -27,7 +26,6 @@ LOG ON
     FILEGROWTH = 5 MB);
 GO
 
-
 USE Refrigerantes;
 GO
 ----------------------------------------------CREACION DE LAS TABLAS------------------------------------------
@@ -35,7 +33,7 @@ GO
 -- TABLA REFRIGERANTES
 
 CREATE TABLE Refrigerante (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+    refrigerante_id INT IDENTITY(1,1) PRIMARY KEY,
     nombre NVARCHAR(50) NOT NULL,
     CO2eq DECIMAL(10,2) NOT NULL,
     clase NVARCHAR(50) NOT NULL,
@@ -45,23 +43,21 @@ CREATE TABLE Refrigerante (
 -- TABLA TIPO EQUIPO
 
 CREATE TABLE Tipo_equipo (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+    tipo_equipo_id INT IDENTITY(1,1) PRIMARY KEY,
     tipo_equipo NVARCHAR(50) NOT NULL
-   
 );
 
 -- TABLA CATEGORIA PROFESIONAL
 
 CREATE TABLE Categoria_profesional (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+    categoria_profesional_id INT IDENTITY(1,1) PRIMARY KEY,
     categoria_profesional NVARCHAR(50) NOT NULL
-   
 );
 
---TABLA CLIENTE
+-- TABLA CLIENTE
 
 CREATE TABLE Cliente (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+    cliente_id INT IDENTITY(1,1) PRIMARY KEY,
     cif NVARCHAR(15) NOT NULL,
     nombre NVARCHAR(100) NOT NULL,
     direccion_facturacion NVARCHAR(200) NOT NULL
@@ -70,78 +66,76 @@ CREATE TABLE Cliente (
 -- TABLA OPERARIO
 
 CREATE TABLE Operario (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+    operario_id INT IDENTITY(1,1) PRIMARY KEY,
     dni NVARCHAR(15) NOT NULL,
     nombre NVARCHAR(100) NOT NULL,
     apellido1 NVARCHAR(100) NOT NULL,
     apellido2 NVARCHAR(100),
     email NVARCHAR(50) NOT NULL,
     password NVARCHAR(50) NOT NULL,
-    id_categoria_profesional INT NOT NULL,
+    categoria_profesional_id INT NOT NULL,
 
     CONSTRAINT UQ_Operario_DNI UNIQUE (dni),
 
-    CONSTRAINT FK_Operario_Categoria_profesional FOREIGN KEY (id_categoria_profesional)
-        REFERENCES Categoria_profesional(id)
+    CONSTRAINT FK_Operario_Categoria_profesional FOREIGN KEY (categoria_profesional_id)
+        REFERENCES Categoria_profesional(categoria_profesional_id)
         ON DELETE CASCADE
 );
 
 -- TABLA INSTALACION
 
 CREATE TABLE Instalacion (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    id_cliente INT NOT NULL,
+    instalacion_id INT IDENTITY(1,1) PRIMARY KEY,
+    cliente_id INT NOT NULL,
     nombre NVARCHAR(100) NOT NULL,
     direccion NVARCHAR(200) NOT NULL,
     horario NVARCHAR(50) NOT NULL,
     
-    CONSTRAINT FK_Instalacion_Cliente FOREIGN KEY (id_cliente)
-        REFERENCES Cliente(id)
+    CONSTRAINT FK_Instalacion_Cliente FOREIGN KEY (cliente_id)
+        REFERENCES Cliente(cliente_id)
         ON DELETE CASCADE
 );
 
 -- TABLA EQUIPO
 
 CREATE TABLE Equipo (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    id_instalacion INT NOT NULL,
-    id_refrigerante INT NOT NULL,  
-    id_tipo_equipo INT NOT NULL,
+    equipo_id INT IDENTITY(1,1) PRIMARY KEY,
+    instalacion_id INT NOT NULL,
+    refrigerante_id INT NOT NULL,  
+    tipo_equipo_id INT NOT NULL,
     marca NVARCHAR(100) NOT NULL,
     modelo NVARCHAR(200) NOT NULL,
     carga_refrigerante DECIMAL(5,3) NOT NULL, 
     
-    CONSTRAINT FK_Equipo_Instalacion FOREIGN KEY (id_instalacion)
-        REFERENCES Instalacion(id)
+    CONSTRAINT FK_Equipo_Instalacion FOREIGN KEY (instalacion_id)
+        REFERENCES Instalacion(instalacion_id)
         ON DELETE CASCADE,
     
-    CONSTRAINT FK_Equipo_Refrigerante FOREIGN KEY (id_refrigerante)
-        REFERENCES Refrigerante(id)
+    CONSTRAINT FK_Equipo_Refrigerante FOREIGN KEY (refrigerante_id)
+        REFERENCES Refrigerante(refrigerante_id)
         ON DELETE CASCADE,  
     
-    CONSTRAINT FK_Equipo_Tipo_equipo FOREIGN KEY (id_tipo_equipo)
-        REFERENCES Tipo_equipo(id)
+    CONSTRAINT FK_Equipo_Tipo_equipo FOREIGN KEY (tipo_equipo_id)
+        REFERENCES Tipo_equipo(tipo_equipo_id)
         ON DELETE CASCADE
 );
 
 -- TABLA OPERACION DE CARGA
 
 CREATE TABLE Operacion_carga (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    id_operario INT NOT NULL,
-    id_equipo INT NOT NULL,
+    operacion_carga_id INT IDENTITY(1,1) PRIMARY KEY,
+    operario_id INT NOT NULL,
+    equipo_id INT NOT NULL,
     fecha_operacion DATETIME2 NOT NULL,
     descripcion NVARCHAR(500) NOT NULL,
     refrigerante_manipulado DECIMAL(5,3) NOT NULL,
-    recuperacion BIT NOT NULL
+    recuperacion BIT NOT NULL,
     
-    CONSTRAINT FK_Operacion_carga_Operario FOREIGN KEY (id_operario)
-        REFERENCES Operario(id)
+    CONSTRAINT FK_Operacion_carga_Operario FOREIGN KEY (operario_id)
+        REFERENCES Operario(operario_id)
         ON DELETE CASCADE,
 
-    CONSTRAINT FK_Operacion_carga_Equipo FOREIGN KEY (id_equipo)
-        REFERENCES Equipo(id)
+    CONSTRAINT FK_Operacion_carga_Equipo FOREIGN KEY (equipo_id)
+        REFERENCES Equipo(equipo_id)
         ON DELETE CASCADE    
 );
-
-
