@@ -49,7 +49,7 @@ INSERT INTO Cliente (cif, nombre, direccion_facturacion) VALUES
     ('J01234567', 'CineGlobal', 'Plaza de los Espectadores 10, Barcelona');
 
 --OPERARIOS
-INSERT INTO Operario (dni, nombre, apellido1, apellido2, email, password, id_categoria_profesional) VALUES
+INSERT INTO Operario (dni, nombre, apellido1, apellido2, email, password, categoria_profesional_id) VALUES
     ('12345678A', 'Carlos', 'Martinez', 'Lopez', 'carlos.martinez@refrigerante.com', '1234', 1),
     ('23456789B', 'Ana', 'Gomez', 'Garcia', 'ana.gomez@refrigerante.com', '1234', 2),
     ('34567890C', 'Luis', 'Hernandez', 'Sanchez', 'luis.hernandez@refrigerante.com', '1234', 3),
@@ -63,9 +63,8 @@ INSERT INTO Operario (dni, nombre, apellido1, apellido2, email, password, id_cat
     ('52764295H', 'Elver', 'Galarga', 'Astur', 'elver.galarga@refrigerante.com', '1234', 5),
     ('01234567J', 'Sandra', 'Ortega', 'Marin', 'sandra.ortega@refrigerante.com', '1234', 1);
 
-
 --INSTALACIONES
-INSERT INTO Instalacion (id_cliente, nombre, direccion, horario) VALUES
+INSERT INTO Instalacion (cliente_id, nombre, direccion, horario) VALUES
     (1, 'Kinepolis Madrid - La Moraleja', 'Calle Moraleja 120, Madrid', '10:00 - 23:00'),
     (1, 'Kinepolis Valencia - Aqua', 'Avenida del Puerto 23, Valencia', '10:00 - 23:00'),
     (2, 'Clínica Sanitas Diagonal', 'Calle Diagonal 50, Barcelona', '08:00 - 20:00'),
@@ -83,12 +82,10 @@ INSERT INTO Instalacion (id_cliente, nombre, direccion, horario) VALUES
     (3, 'Fitness Pro Barcelona', 'Calle del Ejercicio 15, Barcelona', '06:00 - 22:00'),
     (3, 'Fitness Pro Málaga', 'Avenida del Deporte 55, Málaga', '06:00 - 22:00'),
     (4, 'Inditex Fábrica Este', 'Polígono Industrial Este 22, Zaragoza', '07:00 - 19:00'),
-    (4, 'Inditex Fábrica Sur', 'Polígono Industrial Sur 9, Sevilla', '07:00 - 19:00'),
-    (5, 'Clinimed Madrid', 'Paseo de la Castellana 150, Madrid', '08:00 - 18:00'),
-    (6, 'CineWorld Barcelona', 'Calle de la Filmoteca 3, Barcelona', '10:00 - 01:00');
+    (4, 'Inditex Fábrica Sur', 'Polígono Sur 55, Alicante', '07:00 - 19:00');
 
 -- EQUIPOS
-INSERT INTO Equipo (id_instalacion, id_refrigerante, id_tipo_equipo, marca, modelo, carga_refrigerante) VALUES
+INSERT INTO Equipo (instalacion_id, refrigerante_id, tipo_equipo_id, marca, modelo, carga_refrigerante) VALUES
     (1, 1, 1, 'Daikin', 'FTXM35M', 1.200),
     (2, 2, 2, 'Mitsubishi Electric', 'MSZ-HR50VF', 5.500),
     (3, 3, 3, 'LG', 'S3-Q12JA3BA', 1.100),
@@ -111,7 +108,7 @@ INSERT INTO Equipo (id_instalacion, id_refrigerante, id_tipo_equipo, marca, mode
     (10, 10, 4, 'Daikin', 'FTXM25N', 5.600);
 
 --OPERACIONES DE CARGA
-INSERT INTO Operacion_carga (id_operario, id_equipo, fecha_operacion, descripcion, refrigerante_manipulado, recuperacion) VALUES
+INSERT INTO Operacion_carga (operario_id, equipo_id, fecha_operacion, descripcion, refrigerante_manipulado, recuperacion) VALUES
     (2, 6, '2023-11-01', 'Inspección de rutina, ajuste de carga.', 0.750, 0),
     (3, 9, '2023-11-03', 'Extracción de refrigerante por fuga.', 2.100, 1),
     (4, 4, '2023-11-05', 'Carga inicial de refrigerante para equipo nuevo.', 3.000, 0),
